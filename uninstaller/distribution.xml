@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>Uninstall AWDL Toggle</title>
+    <organization>com.local</organization>
+    <welcome file="welcome.html"/>
+    <conclusion file="conclusion.html"/>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <options customize="never" require-scripts="true" rootVolumeOnly="true"/>
+    <pkg-ref id="com.local.awdltoggle.uninstall"/>
+    <choices-outline>
+        <line choice="default">
+            <line choice="com.local.awdltoggle.uninstall"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="com.local.awdltoggle.uninstall" visible="false">
+        <pkg-ref id="com.local.awdltoggle.uninstall"/>
+    </choice>
+    <pkg-ref id="com.local.awdltoggle.uninstall" version="1.0" onConclusion="none">Uninstall.pkg</pkg-ref>
+</installer-gui-script>

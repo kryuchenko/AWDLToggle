@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Uninstall AWDL Toggle
+
+# Get the actual logged-in user
+REAL_USER=$(stat -f '%Su' /dev/console)
+REAL_HOME=$(eval echo ~$REAL_USER)
+
+# Stop and remove LaunchAgent
+LAUNCH_AGENT="$REAL_HOME/Library/LaunchAgents/com.local.awdltoggle.plist"
+if [ -f "$LAUNCH_AGENT" ]; then
+    sudo -u "$REAL_USER" launchctl unload "$LAUNCH_AGENT" 2>/dev/null
+    rm -f "$LAUNCH_AGENT"
+fi
+
+# Kill running process
+killall AWDLToggle 2>/dev/null
+
+# Remove application
+rm -rf /Applications/AWDLToggle.app
+
+
+# Remove old awdlkiller if exists (from v1)
+launchctl bootout system/jamestut.awdlkiller 2>/dev/null
+rm -f /Library/LaunchDaemons/jamestut.awdlkiller.plist
+rm -f /usr/local/bin/awdlkiller
+killall awdlkiller 2>/dev/null
+
+# Enable AWDL back
+/sbin/ifconfig awdl0 up 2>/dev/null
+
+# Remove preferences
+rm -f "$REAL_HOME/Library/Preferences/com.local.awdltoggle.plist"
+
+exit 0

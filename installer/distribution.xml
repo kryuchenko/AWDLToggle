@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>AWDL Toggle</title>
+    <organization>com.local</organization>
+    <welcome file="welcome.html"/>
+    <readme file="readme.html"/>
+    <conclusion file="conclusion.html"/>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <options customize="never" require-scripts="true" rootVolumeOnly="true"/>
+    <pkg-ref id="com.local.awdltoggle"/>
+    <choices-outline>
+        <line choice="default">
+            <line choice="com.local.awdltoggle"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="com.local.awdltoggle" visible="false">
+        <pkg-ref id="com.local.awdltoggle"/>
+    </choice>
+    <pkg-ref id="com.local.awdltoggle" version="2.0" onConclusion="none">AWDLToggle.pkg</pkg-ref>
+</installer-gui-script>

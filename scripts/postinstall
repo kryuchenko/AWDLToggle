@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Get the actual logged-in user (not root)
+REAL_USER=$(stat -f '%Su' /dev/console)
+REAL_HOME=$(eval echo ~$REAL_USER)
+
+# Kill old process if running
+killall AWDLToggle 2>/dev/null
+killall AWDLKiller 2>/dev/null
+
+# Small delay to ensure process is dead
+sleep 0.5
+
+# Unload old LaunchAgent if exists
+sudo -u "$REAL_USER" launchctl unload "$REAL_HOME/Library/LaunchAgents/com.local.awdltoggle.plist" 2>/dev/null
+
+# Small delay
+sleep 0.5
+
+# Set setuid on helper (owned by root, executable by all, setuid bit)
+HELPER="/Applications/AWDLToggle.app/Contents/MacOS/awdl-helper"
+chown root:wheel "$HELPER"
+chmod 4755 "$HELPER"
+
+# Create LaunchAgent for current user (auto-start at login)
+LAUNCH_AGENTS_DIR="$REAL_HOME/Library/LaunchAgents"
+mkdir -p "$LAUNCH_AGENTS_DIR"
+chown "$REAL_USER" "$LAUNCH_AGENTS_DIR"
+
+cat > "$LAUNCH_AGENTS_DIR/com.local.awdltoggle.plist" << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local.awdltoggle</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Applications/AWDLToggle.app/Contents/MacOS/AWDLToggle</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>
+EOF
+
+chown "$REAL_USER" "$LAUNCH_AGENTS_DIR/com.local.awdltoggle.plist"
+
+# Load LaunchAgent (KeepAlive will auto-start the app)
+sudo -u "$REAL_USER" launchctl load "$LAUNCH_AGENTS_DIR/com.local.awdltoggle.plist" 2>/dev/null
+
+exit 0
