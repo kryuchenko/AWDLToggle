@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 15px; font-size: 13px; }
+        p { line-height: 1.4; color: #333; margin: 8px 0; }
+        ul { margin: 8px 0; padding-left: 20px; }
+        li { margin: 4px 0; }
+        .note { font-size: 11px; color: #666; margin-top: 12px; }
+    </style>
+</head>
+<body>
+    <p><strong>AWDL Toggle</strong> fixes a common <strong>slow / unstable Wi-Fi issue on MacBook M1/M2/M3</strong> caused by <strong>AWDL (Apple Wireless Direct Link)</strong> — the networking interface behind <strong>AirDrop, AirPlay, Sidecar, Universal Control, Handoff, Universal Clipboard, and Auto Unlock</strong>.</p>
+
+    <p>On Apple Silicon, macOS uses the same Wi-Fi radio for your normal internet connection and AWDL. When AWDL is active, the radio may periodically jump to AWDL "social" channels to discover nearby Apple devices — typically:</p>
+    <ul>
+        <li><strong>2.4 GHz:</strong> Channel 6</li>
+        <li><strong>5 GHz:</strong> Channel 44 (EU) or Channel 149 (US/Canada)</li>
+    </ul>
+
+    <p>This channel hopping can introduce <strong>ping spikes (jitter)</strong> and reduce real-world throughput — for example, you might see <strong>~700–800 Mbps with AWDL off vs ~400–500 Mbps with AWDL on</strong> (results depend on your router, region, and environment).</p>
+
+    <p>With one click you can switch between:</p>
+    <ul>
+        <li><strong>Fast Wi-Fi mode</strong> — AWDL disabled: lower ping, more stable Wi-Fi, faster downloads</li>
+        <li><strong>AirDrop mode</strong> — AWDL enabled: all Continuity features work normally</li>
+    </ul>
+
+    <p>The app lives in the <strong>menu bar</strong>, shows the current AWDL status, and toggles instantly.</p>
+
+    <p class="note"><strong>Note:</strong> Speed improvements are usually noticeable only on fast connections (typically <strong>above ~300–500 Mbps</strong>). On slower internet, the main benefit is often <strong>better latency and stability</strong>, not higher peak speed. Disabling AWDL turns off the Apple features listed above until you re-enable it.</p>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.DS_Store
+.build/
+*.pkg
+pkg_root/Applications/AWDLToggle.app/Contents/MacOS/AWDLToggle
+installer/AWDLToggle.pkg
+uninstaller/Uninstall.pkg
+AWDLToggle.app/
+awdl-helper
