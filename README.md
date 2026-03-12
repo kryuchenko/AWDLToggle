@@ -18,22 +18,13 @@ This app monitors AWDL and kills it every time macOS tries to bring it back. It 
 
 ## Installation
 
-### Option 1: One command (recommended)
-
 ```bash
 curl -fsSL https://raw.githubusercontent.com/kryuchenko/AWDLToggle/main/install.sh | bash
 ```
 
 Downloads, builds, and installs everything. Requires Xcode Command Line Tools.
 
-This is the recommended way because the app isn't signed. Signing requires an Apple Developer certificate ($99/year) — this is a hobby project and I'd rather not pay Apple an extra hundred bucks annually just to fix their Wi-Fi issues.
-
-### Option 2: Download pkg
-
-1. Download `AWDL Toggle.pkg` from [Releases](https://github.com/kryuchenko/AWDLToggle/releases)
-2. Open the pkg — macOS will show a warning about unidentified developer
-3. Go to **System Settings → Privacy & Security** → scroll down → click **"Open Anyway"**
-4. Run the installer again
+The app isn't signed — signing requires an Apple Developer certificate ($99/year). This is a hobby project and I'd rather not pay Apple an extra hundred bucks annually just to fix their Wi-Fi issues.
 
 ## Usage
 
