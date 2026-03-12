@@ -8,6 +8,8 @@ AWDL (Apple Wireless Direct Link) powers AirDrop, AirPlay, Sidecar, and other Co
 - Ping spikes and jitter
 - Reduced throughput (~400-500 Mbps vs ~700-800 Mbps with AWDL off)
 
+![AWDL off vs on — Speedtest comparison](awdl.jpg)
+
 ## Why not just `ifconfig awdl0 down`?
 
 You can run `sudo ifconfig awdl0 down` — but macOS will bring AWDL back up within seconds. Apple is *very* persistent: it tries to revive AWDL every 2-10 minutes, sometimes in rapid bursts of 2-3 attempts per second.
